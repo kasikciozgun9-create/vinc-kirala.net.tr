@@ -1,0 +1,22 @@
+# Konya Vinç Kiralama
+
+> Konya merkez (Selçuklu, Meram, Karatay) ve ilçelerinde vinç kiralama ve ağır yük taşıma hizmeti. Vinçli kamyon (hiyap), mobil vinç, sepetli platform, makaslı ve bomlu manlift, tır ve lowbed ile ağır nakliye. Saatlik, günlük, haftalık ve aylık kiralama. Telefon ve WhatsApp: 0505 466 38 10.
+
+## Sayfalar
+
+- [Ana sayfa](https://vinc-kirala.net.tr/): Hizmetler, ekipman parkı, projeler, hizmet bölgesi, sık sorulan sorular ve teklif formu
+- [Hizmetler](https://vinc-kirala.net.tr/#hizmetler): Vinçli kamyon, mobil vinç, konteyner taşıma, makine ve fabrika taşıma, inşaat malzemesi sevkiyatı, gece operasyonları
+- [Ekipman parkı](https://vinc-kirala.net.tr/#ekipman): Hiyap, mobil vinç, sepetli platform, makaslı manlift, bomlu manlift, tır ve lowbed
+- [Hizmet bölgesi](https://vinc-kirala.net.tr/#hizmet-bolgesi): Konya merkez ilçeleri, Konya OSB, Büsan ve il geneli
+- [Sık sorulan sorular](https://vinc-kirala.net.tr/#sss): Fiyatlandırma, kiralama süreleri, vinç türleri
+- [İletişim ve teklif](https://vinc-kirala.net.tr/#iletisim): Telefon ve WhatsApp ile teklif talebi
+
+## Ayrıntılı içerik
+
+- [llms-full.txt](https://vinc-kirala.net.tr/llms-full.txt): Sitenin tüm metin içeriği tek dosyada
+
+## Yasal
+
+- [Gizlilik Politikası](https://vinc-kirala.net.tr/gizlilik-politikasi.html)
+- [KVKK Aydınlatma Metni](https://vinc-kirala.net.tr/kvkk-aydinlatma-metni.html)
+- [Çerez Politikası](https://vinc-kirala.net.tr/cerez-politikasi.html)

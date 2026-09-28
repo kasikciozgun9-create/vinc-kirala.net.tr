@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+
+# Yapay zeka arama ve asistan botları (siteyi yanıtlarda önerebilmeleri için izinli)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+# Google Ads açılış sayfası denetim botu
+User-agent: AdsBot-Google
+Allow: /
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+Sitemap: https://vinc-kirala.net.tr/sitemap.xml
