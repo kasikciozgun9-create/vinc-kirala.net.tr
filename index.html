@@ -19,6 +19,26 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM özeti">
+<script>
+// Google Onay Modu v2: onay verilene kadar reklam/analiz çerezleri kapalı.
+// Google Ads / GA4 etiketini (gtag.js) BU BLOKTAN SONRA ekleyin.
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("consent", "default", {ad_storage:"denied", ad_user_data:"denied", ad_personalization:"denied", analytics_storage:"denied", wait_for_update:500});
+try { if (localStorage.getItem("vk_consent") === "granted") gtag("consent", "update", {ad_storage:"granted", ad_user_data:"granted", ad_personalization:"granted", analytics_storage:"granted"}); } catch(e) {}
+</script>
+<!-- Google Ads etiketi (konya işletme · 429-417-1998) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18499460783"></script>
+<script>
+gtag("js", new Date());
+gtag("config", "AW-18499460783", { allow_enhanced_conversions: true });
+// Dönüşüm etiketleri (Google Ads > Hedefler > Dönüşümler)
+window.VK_ADS = {
+  telefon: "AW-18499460783/PgYrCNmH4aMdEK-9nfVE", // Site - Telefon tıklaması
+  whatsapp: "AW-18499460783/nJ4xCNyH4aMdEK-9nfVE", // Site - WhatsApp tıklaması
+  teklif: "AW-18499460783/GlvgCN-H4aMdEK-9nfVE"   // Site - Teklif formu
+};
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -301,18 +321,19 @@ footer .bottom{margin-top:56px;padding-top:24px;border-top:1px solid var(--navy-
 .dock svg{width:18px;height:18px}
 @media (max-width:860px){.dock{display:grid}}
 </style>
+<script src="https://anticlick.com.tr/anticlick.js"
+  data-key="cf_live_a90d7c1b2efd1bb9943d2b1ee9a48b59b5dd"
+  data-campaign="yaz-kampanyasi"
+  data-protect-forms="true"
+  data-protect-gtag="true"
+  async></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MJC68J9H"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<script src="https://anticlick.com.tr/anticlick.js"
-  data-key="cf_live_6ea82d0a032d1119fb03b0eb35ca2c81113f"
-  data-campaign="yaz-kampanyasi"
-  data-protect-forms="true"
-  data-protect-gtag="true"
-  async></script>
+
 
 <div class="util">
   <div class="wrap">
@@ -488,6 +509,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <input id="q-ad" type="text" autocomplete="name">
         </div>
         <div class="f">
+          <label for="q-tel">Telefon</label>
+          <input id="q-tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xx xxx xx xx" required>
+          <small id="q-tel-err" hidden style="color:#c0392b">Lütfen geçerli bir cep telefonu girin (05xx xxx xx xx).</small>
+        </div>
+        <div class="f">
           <label for="q-is">Hizmet</label>
           <select id="q-is">
             <option>Vinçli kamyon (hiyap)</option>
@@ -644,26 +670,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var bg = document.getElementById("burger"), mn = document.getElementById("menu");
   bg.addEventListener("click", function(){ var o = mn.classList.toggle("open"); bg.setAttribute("aria-expanded", o ? "true" : "false"); });
   mn.addEventListener("click", function(e){ if (e.target.closest("a")) { mn.classList.remove("open"); bg.setAttribute("aria-expanded","false"); } });
-  // Google Ads / GA4: sayfada gtag kuruluysa arama ve WhatsApp tıklamaları olay olarak gönderilir.
+  // Google Tag Manager: arama ve WhatsApp tıklamaları dataLayer olayı olarak gönderilir.
   document.addEventListener("click", function(e){
     var a = e.target.closest("[data-cta]"); if (!a) return;
     var kind = a.getAttribute("data-cta");
-    if (typeof window.gtag === "function" && kind.indexOf("quote") !== 0) {
-      window.gtag("event", kind.indexOf("wa") === 0 ? "whatsapp_click" : "phone_click", { cta: kind });
-    }
+    if (kind === "wa-form" || kind.indexOf("quote") === 0) return; // form gönderimi ayrıca izlenir
+    var isWa = kind.indexOf("wa") === 0;
+    window.dataLayer.push({ event: isWa ? "whatsapp_click" : "phone_click", cta: kind });
+    // Google Ads dönüşümü (tel: / wa.me bağlantısı yeni sekmede ya da uygulamada açıldığı için sayfa kapanmadan gider)
+    gtag("event", "conversion", { send_to: isWa ? window.VK_ADS.whatsapp : window.VK_ADS.telefon });
   });
+  // Telefonu Google Ads gelişmiş dönüşümleri için E.164 biçimine çevirir (+905xxxxxxxxx).
+  function toE164(raw){
+    var d = (raw || "").replace(/\D/g, "");
+    if (d.indexOf("90") === 0 && d.length === 12) d = d.slice(2);
+    if (d.charAt(0) === "0") d = d.slice(1);
+    return /^5\d{9}$/.test(d) ? "+90" + d : "";
+  }
   document.getElementById("qf").addEventListener("submit", function(e){
     e.preventDefault();
     var v = function(id){ var el = document.getElementById(id); return el ? el.value.trim() : ""; };
+    var tel = toE164(v("q-tel")), err = document.getElementById("q-tel-err");
+    if (!tel) { err.hidden = false; document.getElementById("q-tel").focus(); return; }
+    err.hidden = true;
     var L = ["Merhaba, vinç kiralama için teklif talebim:"];
     if (v("q-ad")) L.push("Ad / Firma: " + v("q-ad"));
+    L.push("Telefon: " + v("q-tel"));
     L.push("Hizmet: " + v("q-is"));
     if (v("q-ton")) L.push("Yük ağırlığı: " + v("q-ton") + " ton");
     if (v("q-yuk")) L.push("Kaldırma yüksekliği: " + v("q-yuk") + " m");
     L.push("İlçe: " + v("q-ilce"));
     if (v("q-tarih")) L.push("Tarih: " + v("q-tarih").split("-").reverse().join("."));
     if (v("q-not")) L.push("İş tanımı: " + v("q-not"));
-    if (typeof window.gtag === "function") window.gtag("event", "quote_form", {});
+    var parts = v("q-ad").split(/\s+/).filter(Boolean);
+    var ud = { phone_number: tel };
+    if (parts.length > 1) ud.address = { first_name: parts[0].toLocaleLowerCase("tr"), last_name: parts.slice(1).join(" ").toLocaleLowerCase("tr") };
+    window.dataLayer.push({ event: "quote_form_submit", form_service: v("q-is"), form_district: v("q-ilce"), user_data: ud });
+    // Google Ads: gelişmiş dönüşüm verisi (telefon, onay varsa hash'lenerek gönderilir) + teklif formu dönüşümü
+    gtag("set", "user_data", ud);
+    gtag("event", "conversion", { send_to: window.VK_ADS.teklif });
     var a = document.createElement("a");
     a.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(L.join("\n"));
     a.target = "_blank"; a.rel = "noopener";
