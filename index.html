@@ -2,6 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
+<meta name="google-site-verification" content="js_BGXOXOI0EWIOrny3v4OUHyL67QGJmphkj6kMYdyA">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Konya Vinç Kiralama | Vinçli Kamyon, Mobil Vinç ve Ağır Yük Taşıma</title>
 <meta name="description" content="Konya'da vinç kiralama: vinçli kamyon (hiyap), mobil vinç, sepetli platform ve manlift. Saatlik, günlük, haftalık ve aylık kiralama. Teklif için: 0545 339 97 86">
@@ -32,6 +33,8 @@ try { if (localStorage.getItem("vk_consent") === "granted") gtag("consent", "upd
 <script>
 gtag("js", new Date());
 gtag("config", "AW-18499460783", { allow_enhanced_conversions: true });
+gtag("config", "G-QLPN852HZM");
+window.VK_GA = "G-QLPN852HZM";
 // Dönüşüm etiketleri (Google Ads > Hedefler > Dönüşümler)
 window.VK_ADS = {
   telefon: "AW-18499460783/PgYrCNmH4aMdEK-9nfVE", // Site - Telefon tıklaması
@@ -680,6 +683,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     window.dataLayer.push({ event: isWa ? "whatsapp_click" : "phone_click", cta: kind });
     // Google Ads dönüşümü (tel: / wa.me bağlantısı yeni sekmede ya da uygulamada açıldığı için sayfa kapanmadan gider)
     gtag("event", "conversion", { send_to: isWa ? window.VK_ADS.whatsapp : window.VK_ADS.telefon });
+    gtag("event", isWa ? "whatsapp_click" : "phone_click", { send_to: window.VK_GA, cta: kind });
   });
   // Telefonu Google Ads gelişmiş dönüşümleri için E.164 biçimine çevirir (+905xxxxxxxxx).
   function toE164(raw){
@@ -710,6 +714,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // Google Ads: gelişmiş dönüşüm verisi (telefon, onay varsa hash'lenerek gönderilir) + teklif formu dönüşümü
     gtag("set", "user_data", ud);
     gtag("event", "conversion", { send_to: window.VK_ADS.teklif });
+    gtag("event", "generate_lead", { send_to: window.VK_GA, form_service: v("q-is") });
     var a = document.createElement("a");
     a.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(L.join("\n"));
     a.target = "_blank"; a.rel = "noopener";
